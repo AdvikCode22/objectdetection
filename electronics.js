@@ -1,5 +1,5 @@
-img = ""
-status =""
+img1 = ""
+status = ""
 objects = []
 
 function setup(){
@@ -7,13 +7,13 @@ function setup(){
     canvas1.center()
     background("white")
     model = ml5.objectDetector('cocossd',modelLoaded)
-    document.getElementById("status1").innerHTML = "Status: Detecting Objects"
+    document.getElementById("status2").innerHTML = "Status: Detecting Objects"
 }
 
 function modelLoaded(){
     console.log("Model Has been loaded!")
     status = true
-    model.detect(img,gotResults)
+    model.detect(img1,gotResults)
 }
 
 function gotResults(error,results){
@@ -28,15 +28,15 @@ function gotResults(error,results){
 }
 
 function preload(){
-    img = loadImage("https://www.edwarddrummond.com/wp-content/uploads/Three-People-Walking.jpg")
+    img1 = loadImage("https://i.postimg.cc/02LHyHXN/Adobe-Stock-237119664.jpg")
 }
 
 function draw(){
-    image(img,0,0,750,500)
+    image(img1,0,0,750,500)
 
     if(status != ""){
         for(i = 0 ; i < objects.length ; i++){
-            document.getElementById("status1").innerHTML = "Status: Objects Detected"
+            document.getElementById("status2").innerHTML = "Status: Objects Detected"
 
             fill("purple")
             percentage = Math.floor(objects[i].confidence * 100)
@@ -45,7 +45,7 @@ function draw(){
             noFill()
             stroke("purple")
             rect(objects[i].x , objects[i].y , objects[i].width , objects[i].height)
-            document.getElementById("objcount").innerHTML = "There are 3 main objects and CocoSSD identified " + objects.length
+            document.getElementById("objcount").innerHTML = "There are 11 main objects and CocoSSD identified " + objects.length
         }
-    }   
-}
+    }  
+} 
